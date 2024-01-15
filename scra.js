@@ -1,6 +1,7 @@
 const prompt = require('prompt-sync')();
 let manyWords = ['apple','mango','umbrella','rocket','table','water','poster','eight','power','rabbit'];
 let newWord;
+let wrong=0;
 let mixWord =(str)=>{
     str=str.split("");
     str.sort();
@@ -14,6 +15,9 @@ while(true){
     console.log(word);
     console.log('\n Try to rearrange and find the word ');
     while(choice){
+       if(wrong==3){
+        choice=false;
+       }
        let sl = prompt('Enter the elemment to be taken :');
        let ele = word.slice((sl-1),sl);
        ele = ele.toString();
@@ -24,7 +28,9 @@ while(true){
        newWord=word.join('');
        if(newWord === ranWord){
             choice=false;
+       }else{
+        wrong++;
        }
     }
-    console.log(newWord,' is the correct answer \n');
+    console.log(ranWord,' is the correct answer \n');
 }
